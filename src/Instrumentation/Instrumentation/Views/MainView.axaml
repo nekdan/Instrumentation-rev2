@@ -1,0 +1,98 @@
+<UserControl
+    x:Class="Instrumentation.Views.MainView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Instrumentation.Views.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dialogHost="clr-namespace:DialogHost;assembly=DialogHost.Avalonia"
+    xmlns:rxui="http://reactiveui.net"
+    xmlns:viewModels="clr-namespace:Instrumentation.ViewModels"
+    d:DesignHeight="650"
+    d:DesignWidth="1150"
+    Background="#1e2124"
+    Foreground="#FFFFFF"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:Base64ToBitmapConverter x:Key="Base64ToBitmapConverter" />
+    </UserControl.Resources>
+    
+    <Design.DataContext>
+        <viewModels:MainViewModel />
+    </Design.DataContext>
+
+    <dialogHost:DialogHost 
+        CloseOnClickAway="False"
+        DialogMargin="0">
+        <Grid RowDefinitions="Auto, *, 80">
+            <TabControl
+                Grid.Row="0"
+                Items="{Binding Categories, Mode=OneWay}"
+                SelectedItem="{Binding SelectedCategory, Mode=TwoWay}">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="5">
+                            <Image
+                                Width="30"
+                                Height="30"
+                                Opacity="{Binding Opacity}"
+                                Source="{Binding Category.IconBase64, Converter={StaticResource Base64ToBitmapConverter}}" />
+                            <TextBlock Text="{Binding Category.Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel />
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
+
+            <Button
+                Name="InfoButton"
+                Grid.Row="0"
+                Margin="10"
+                HorizontalAlignment="Right"
+                CornerRadius="50"
+				FontSize="17">
+                <TextBlock Text="Информация"></TextBlock>
+                <Button.Styles>
+					<Style Selector="Button">
+						<Setter Property="Foreground" Value="#8A8B8F"/>
+					</Style>
+                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent"/>
+						<Setter Property="Opacity" Value="0.75"/>
+                    </Style>
+                    <Style Selector="Button:not(:pointerover) /template/ ContentPresenter#PART_ContentPresenter">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                    <Style Selector="Button:pointerover > Path">
+                        <Setter Property="Fill" Value="Transparent"/>
+                    </Style>
+                    <Style Selector="Button:not(:pointerover) > Path">
+                        <Setter Property="Fill" Value="Transparent"/>
+                    </Style>
+                </Button.Styles>
+            </Button>
+
+            <rxui:RoutedViewHost
+                Grid.Row="1"
+                Padding="-5,0"
+                Router="{Binding Router}" />
+
+            <rxui:ViewModelViewHost 
+				Grid.Row="2" 
+				ViewModel="{Binding PlayerViewModel}" 
+				Padding="0 -15 0 0"/>
+        </Grid>
+
+        <dialogHost:DialogHost.DialogContent>
+        </dialogHost:DialogHost.DialogContent>
+    </dialogHost:DialogHost>
+
+</UserControl>

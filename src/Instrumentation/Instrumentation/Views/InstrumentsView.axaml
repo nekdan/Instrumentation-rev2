@@ -1,0 +1,208 @@
+<UserControl
+    d:DesignHeight="650"
+    d:DesignWidth="1150"
+    mc:Ignorable="d"
+    x:Class="Instrumentation.Views.InstrumentsView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:converters="clr-namespace:Instrumentation.Views.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:Instrumentation.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    FontSize="16">
+
+    <UserControl.Resources>
+        <converters:Base64ToBitmapConverter x:Key="Base64ToBitmapConverter" />
+    </UserControl.Resources>
+
+    <UserControl.Styles>
+        <StyleInclude Source="avares://Avalonia.Themes.Fluent/DensityStyles/Compact.xaml" />
+
+        <Style Selector="Border.Section">
+            <Setter Property="Margin" Value="0 0 1 1" />
+			<Setter Property="Padding" Value="0 5 0 5" />
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+
+        <Style Selector="TreeViewItem">
+            <Setter Property="IsExpanded" Value="True" />
+            <Setter Property="i:Interaction.Behaviors">
+                <i:BehaviorCollectionTemplate>
+                    <i:BehaviorCollection>
+                        <ia:EventTriggerBehavior EventName="DoubleTapped">
+                            <InvokeCommandAction Command="{Binding StartPlaying}" />
+                        </ia:EventTriggerBehavior>
+                    </i:BehaviorCollection>
+                </i:BehaviorCollectionTemplate>
+            </Setter>
+        </Style>
+
+        <Style>
+            <Style.Resources>
+                <x:Double x:Key="TreeViewItemMinHeight">20</x:Double>
+            </Style.Resources>
+        </Style>
+    </UserControl.Styles>
+
+    <Design.DataContext>
+        <viewModels:InstrumentsViewModel />
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="355 * 0.75*">
+        <Border
+			Background="#2E3136"
+            Classes="Section"
+            Grid.Column="0">
+			<ScrollViewer
+				AllowAutoHide="False"
+				HorizontalScrollBarVisibility="Auto"
+				HorizontalAlignment="Stretch"
+				Padding="0 0 15 15">
+                <TreeView
+                    FontSize="16"
+                    Items="{Binding Instuments, Mode=OneWay}"
+                    SelectedItem="{Binding SelectedInstrument, Mode=TwoWay}"
+                    SelectionMode="Single">
+                    <TreeView.ItemTemplate>
+                        <TreeDataTemplate ItemsSource="{Binding Subinstuments}">
+                            <TextBlock Text="{Binding Name}" FontSize="16" TextWrapping="Wrap"/>
+                        </TreeDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+			</ScrollViewer>
+        </Border>
+
+        <Border
+            Background="#36393e"
+            Classes="Section"
+            Grid.Column="1"
+			MinWidth="200">
+			<ScrollViewer
+				AllowAutoHide="False"
+				HorizontalScrollBarVisibility="Auto"
+				Padding="0 0 15 15">
+				<TreeView
+                    FontSize="16"
+                    AutoScrollToSelectedItem="False"
+                    Items="{Binding Sounds, Mode=OneWay}"
+                    SelectedItem="{Binding SelectedSound, Mode=TwoWay}"
+                    SelectionMode="Single">
+					<TreeView.ItemTemplate>
+						<TreeDataTemplate ItemsSource="{Binding Subsounds}">
+							<TextBlock Text="{Binding Name}" FontSize="16" TextWrapping="Wrap" />
+						</TreeDataTemplate>
+					</TreeView.ItemTemplate>
+				</TreeView>
+			</ScrollViewer>
+        </Border>
+
+        <Border
+            Background="#2E3136"
+            Classes="Section"
+            Grid.Column="2">
+            <Grid Name="DescriptionColumn">
+                <DockPanel
+                    IsVisible="{Binding SelectedSoundData, Converter={x:Static ObjectConverters.IsNotNull}}"
+                    Name="ImageData"
+                    Width="{Binding #DescriptionColumn.Width}">
+                    <Grid
+                        ColumnDefinitions="Auto,*,Auto"
+                        DockPanel.Dock="Bottom"
+                        Height="200"
+                        HorizontalAlignment="Stretch"
+                        IsVisible="{Binding ShowSoundImages, Mode=OneWay}"
+                        Margin="0,16,0,0"
+                        Name="carouselBlock"
+                        Width="{Binding #DescriptionColumn.Width}">
+                        <Button
+                            Grid.Column="0"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            Margin="4"
+                            Name="left"
+                            VerticalAlignment="Center"
+                            Width="40">
+                            <Path Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" Fill="Black" />
+                        </Button>
+                        <Carousel
+                            Grid.Column="1"
+                            Items="{Binding SoundNoteImages, Mode=OneWay}"
+                            Name="carousel">
+                            <Carousel.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding ImageBase64, Converter={StaticResource Base64ToBitmapConverter}}" />
+                                </DataTemplate>
+                            </Carousel.ItemTemplate>
+                        </Carousel>
+                        <Button
+                            Grid.Column="2"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            Margin="4"
+                            Name="right"
+                            VerticalAlignment="Center"
+                            Width="40">
+                            <Path Data="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" Fill="Black" />
+                        </Button>
+                    </Grid>
+
+                    <ScrollViewer
+						AllowAutoHide="False"
+                        HorizontalScrollBarVisibility="Disabled" 
+                        VerticalScrollBarVisibility="Auto"
+                        Margin="10 0 5 5"
+						Padding="0 0 15 0">
+                        <TextBlock
+                            FontSize="16"
+                            Text="{Binding SelectedSoundData.Description}"
+                            TextWrapping="Wrap" />
+                    </ScrollViewer>
+                </DockPanel>
+
+                <Grid
+                    ColumnDefinitions="Auto,*,Auto"
+                    Height="300"
+                    HorizontalAlignment="Center"
+                    IsVisible="{Binding ShowInstrumentImages, Mode=OneWay}"
+                    Margin="30,5"
+                    Name="instrumentCarouselBlock"
+                    VerticalAlignment="Bottom"
+                    Width="{Binding #DescriptionColumn.Width}">
+                    <Button
+                        Grid.Column="0"
+                        Height="35"
+                        HorizontalAlignment="Center"
+                        Margin="4"
+                        Name="instrumentLeft"
+                        VerticalAlignment="Center"
+                        Width="40">
+                        <Path Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" Fill="Black" />
+                    </Button>
+                    <Carousel
+                        Grid.Column="1"
+                        Items="{Binding InstrumentImages, Mode=OneWay}"
+                        Name="instrumentCarousel">
+                        <Carousel.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ImageBase64, Converter={StaticResource Base64ToBitmapConverter}}" />
+                            </DataTemplate>
+                        </Carousel.ItemTemplate>
+                    </Carousel>
+                    <Button
+                        Grid.Column="2"
+                        Height="35"
+                        HorizontalAlignment="Center"
+                        Margin="4"
+                        Name="instrumentRight"
+                        VerticalAlignment="Center"
+                        Width="40">
+                        <Path Data="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" Fill="Black" />
+                    </Button>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+
+</UserControl>

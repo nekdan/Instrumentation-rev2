@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Instrumentation.NetCore</RootNamespace>
+        <AvaloniaVersion>0.10.11</AvaloniaVersion>
+        <RuntimeIdentifiers>osx-x64;win-x64;win-arm;win-x86;</RuntimeIdentifiers>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <Platforms>AnyCPU;x64;x86</Platforms>
+        <ApplicationIcon>1.ico</ApplicationIcon>
+        <AssemblyName>Instrumentation.App</AssemblyName>
+        <StartupObject>Instrumentation.NetCore.Program</StartupObject>
+    </PropertyGroup>
+    <ItemGroup>
+      <None Remove="1.ico" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="1.ico" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Avalonia.Desktop" Version="0.10.13" />
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.13" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.13" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Instrumentation\Instrumentation.csproj" />
+    </ItemGroup>
+</Project>

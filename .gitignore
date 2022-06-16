@@ -1,0 +1,13 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+/src/Instrumentation/Instrumentation/app.db-shm
+/src/Instrumentation/Instrumentation/app.db-wal
+/.net
+/setup-script-rev2.iss
+/AI Setup 2
+/.vs
+/src/Instrumentation/Instrumentation/app.db
+/Setup/Debug

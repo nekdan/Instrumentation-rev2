@@ -1,0 +1,96 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="Instrumentation.Views.StartupWindow"
+        SystemDecorations="None"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        SizeToContent="WidthAndHeight"
+        Title="Инструментоведение">
+    <Canvas Height="565" Width="400">
+        <Image 
+            Height="565" Width="400"
+            Stretch="Fill"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Source="../Assets/SplashImage.jpg"></Image>
+        
+        <Canvas
+            Top="160"
+            Left="260">
+            <TextBlock 
+                FontSize="18"
+                FontWeight="Light">С. С. Попов</TextBlock>
+        </Canvas>
+        
+        <Canvas
+            Top="202"
+            Left="70">
+            <TextBlock 
+                FontSize="23"
+                FontWeight="Heavy"
+                Foreground="Yellow">ИНСТРУМЕНТОВЕДЕНИЕ</TextBlock>
+        </Canvas>
+        
+        <Canvas
+            Top="245"
+            Left="278">
+            <TextBlock 
+                FontWeight="Thin"
+                FontSize="18"
+                Foreground="Yellow">
+                Струнные
+            </TextBlock>
+        </Canvas>
+        
+        <Canvas
+            Top="270"
+            Left="251">
+            <TextBlock 
+                FontWeight="Thin"
+                FontSize="18"
+                Foreground="Yellow">
+                Мембранные
+            </TextBlock>
+        </Canvas>
+        
+        <Canvas
+            Top="295"
+            Left="235">
+            <TextBlock 
+                FontWeight="Thin"
+                FontSize="18"
+                Foreground="Yellow">
+                Самозвучащие
+            </TextBlock>
+        </Canvas>
+        
+        <Canvas
+            Top="345"
+            Left="180">
+            <TextBlock 
+                Width="150"
+                TextWrapping="Wrap"
+                TextAlignment="Right"
+                FontWeight="Thin"
+                FontSize="18">
+                Мультимедийное пособие
+            </TextBlock>
+        </Canvas>
+        
+        <Canvas
+            Top="410"
+            Left="235">
+            <TextBlock 
+                Width="150"
+                TextWrapping="Wrap"
+                TextAlignment="Right"
+                FontWeight="Thin"
+                FontSize="18">
+                2022
+            </TextBlock>
+        </Canvas>
+    </Canvas>
+</Window>

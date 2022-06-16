@@ -1,0 +1,150 @@
+<UserControl
+    Background="#2a2e32"
+    d:DesignHeight="650"
+    d:DesignWidth="1150"
+    mc:Ignorable="d"
+    x:Class="Instrumentation.Views.PlayerView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:Instrumentation.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.DataContext>
+        <viewModels:PlayerViewModel />
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <StyleInclude Source="avares://Avalonia.Themes.Fluent/DensityStyles/Compact.xaml" />
+        
+        <Style Selector="Button.Player">
+            <Setter Property="CornerRadius" Value="50" />
+            <Setter Property="Width" Value="40" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Background" Value="#C4C4C4" />
+        </Style>
+    </UserControl.Styles>
+
+    <Border>
+        <DockPanel>
+            <Slider
+                DockPanel.Dock="Top"
+				IsVisible="{Binding SoundName, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                IsEnabled="{Binding AudioIsLoaded, Mode=OneWay}"
+                Maximum="{Binding SoundDurationTotalSeconds}"
+                Orientation="Horizontal"
+                Value="{Binding SoundPositionTotalSeconds}"
+                Height="40"
+                Margin="0 0 0 0"
+                Padding="0 0 0 0"
+                VerticalAlignment="Center"
+				ZIndex="9999">
+                
+                <Slider.Styles>
+                    <StyleInclude Source="avares://Avalonia.Themes.Fluent/DensityStyles/Compact.xaml" />
+                </Slider.Styles>
+            </Slider>
+
+            <DockPanel Margin="10, 0">
+                <StackPanel
+                    DockPanel.Dock="Right"
+                    Orientation="Horizontal"
+					IsVisible="{Binding SoundName, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                    Spacing="10">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Margin="0,5,0,0"
+                        Text="{Binding Timer, Mode=OneWay}"
+                        VerticalAlignment="Center" />
+
+                    <Button
+                        Classes="Player"
+                        Command="{Binding Mute}"
+                        Height="20"
+                        HorizontalAlignment="Center"
+                        IsVisible="{Binding !IsVolumeMuted}"
+                        Margin="0,5,0,0"
+                        VerticalAlignment="Center"
+                        Width="20">
+                        <Image
+                            Height="15"
+                            HorizontalAlignment="Center"
+                            Source="/Assets/speaker.png"
+                            VerticalAlignment="Center"
+                            Width="15" />
+                    </Button>
+
+                    <Button
+                        Classes="Player"
+                        Command="{Binding Unmute}"
+                        Height="20"
+                        HorizontalAlignment="Center"
+                        IsVisible="{Binding IsVolumeMuted}"
+                        Margin="0,5,0,0"
+                        VerticalAlignment="Center"
+                        Width="20">
+                        <Image
+                            Height="15"
+                            HorizontalAlignment="Center"
+                            Source="/Assets/speaker2.png"
+                            VerticalAlignment="Center"
+                            Width="15" />
+                    </Button>
+
+                    <Slider
+                        HorizontalAlignment="Center"
+                        IsEnabled="{Binding CanChangeVolume}"
+                        Maximum="{Binding MaxVolume}"
+                        Minimum="{Binding MinVolume}"
+                        Orientation="Horizontal"
+                        Value="{Binding SoundVolume}"
+                        VerticalAlignment="Center"
+                        Width="120" />
+                </StackPanel>
+                
+                <StackPanel
+                    Orientation="Horizontal"
+					IsVisible="{Binding SoundName, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                    Spacing="10">
+                    <Button
+                        Classes="Player"
+                        Command="{Binding Play}"
+                        Name="PlayButton">
+                        <Image
+                            Height="25"
+                            Source="/Assets/play.png"
+                            Width="25" />
+                    </Button>
+
+                    <Button
+                        Classes="Player"
+                        Command="{Binding Pause}"
+                        Name="PauseButton">
+                        <Image
+                            Height="25"
+                            Source="/Assets/pause.png"
+                            Width="25" />
+                    </Button>
+
+                    <Button
+                        Classes="Player"
+                        Command="{Binding Stop}"
+                        Name="StopButton">
+                        <Image
+                            Height="25"
+                            Source="/Assets/stop.png"
+                            Width="25" />
+                    </Button>
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        IsVisible="{Binding SoundName, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                        Margin="10,0"
+                        Text="{Binding SoundName, Mode=OneWay}"
+                        VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+        </DockPanel>
+    </Border>
+
+</UserControl>

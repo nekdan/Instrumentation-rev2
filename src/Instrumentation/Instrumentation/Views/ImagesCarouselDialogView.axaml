@@ -1,0 +1,110 @@
+<Window xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:dialogs="clr-namespace:Instrumentation.Dialogs"
+             xmlns:converters="clr-namespace:Instrumentation.Views.Converters"
+             x:Class="Instrumentation.Views.ImagesCarouselDialogView"
+             WindowStartupLocation="CenterOwner"
+             Icon="/Assets/logo.ico"
+             Title="{Binding Name, Mode=OneWay}">
+
+    <Design.DataContext>
+        <dialogs:ImagesCarouselDialogViewModel />
+    </Design.DataContext>
+
+    <Window.Resources>
+        <converters:Base64ToBitmapConverter x:Key="Base64ToBitmapConverter" />
+    </Window.Resources>
+
+    <Panel>
+        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="Black"
+                    TintOpacity="1"
+                    MaterialOpacity="0.65" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+
+        <Panel Margin="5">
+            <DockPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Spacing="5"
+                    DockPanel.Dock="Bottom"
+                    Margin="5"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+                    <Button
+                        Width="100"
+                        Command="{Binding SaveFile}">						
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="Сохранить"></TextBlock>
+						<Button.Styles>
+							<Style Selector="Button">
+								<Setter Property="Foreground" Value="#1E2124"/>
+								<Setter Property="Background" Value="#DAD100"/>
+							</Style>
+							<Style Selector="Button:pointerover">
+								<Setter Property="Foreground" Value="White"/>
+							</Style>
+						</Button.Styles>
+                    </Button>
+                    
+                    <Button
+                        Width="100"
+                        Command="{Binding Close}">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="Закрыть"></TextBlock>
+                    </Button>
+                </StackPanel>
+
+                <Grid
+                    Name="carouselBlock"
+                    HorizontalAlignment="Stretch"
+                    ColumnDefinitions="Auto,*,Auto"
+                    DockPanel.Dock="Bottom">
+                    <Button
+                        Name="left"
+                        Grid.Column="0"
+                        Width="55"
+                        Height="45"
+                        Margin="4"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <Path Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" Fill="Black" />
+                    </Button>
+                    <Carousel
+                        SelectedItem="{Binding SelectedImage, Mode=OneWayToSource}"
+                        Name="carousel"
+                        Grid.Column="1"
+                        Items="{Binding Images}">
+                        <Carousel.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ImageBase64, Converter={StaticResource Base64ToBitmapConverter}}" />
+                            </DataTemplate>
+                        </Carousel.ItemTemplate>
+                    </Carousel>
+                    <Button
+                        Name="right"
+                        Grid.Column="2"
+                        Width="55"
+                        Height="45"
+                        Margin="4"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <Path Data="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" Fill="Black" />
+                    </Button>
+                </Grid>
+            </DockPanel>
+        </Panel>
+    </Panel>
+
+</Window>
