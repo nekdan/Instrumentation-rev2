@@ -15,9 +15,9 @@
     </Design.DataContext>
 
 	<UserControl.Resources>
-		<SolidColorBrush x:Key="SliderThumbBackground" Color="White" />
+		<SolidColorBrush x:Key="SliderThumbBackground" Color="#D3D3D3" />
 		<SolidColorBrush x:Key="SliderThumbBackgroundPointerOver" Color="#DAD100" />
-		<SolidColorBrush x:Key="SliderThumbBackgroundPressed" Color="#A8A100" />
+		<SolidColorBrush x:Key="SliderThumbBackgroundPressed" Color="#C3B000" />
 		<SolidColorBrush x:Key="SliderTrackValueFill" Color="#DAD100" />
 		<SolidColorBrush x:Key="SliderTrackValueFillPointerOver" Color="#DAD100" />
 		<SolidColorBrush x:Key="SliderTrackValueFillPressed" Color="#DAD100" />
@@ -30,7 +30,7 @@
             <Setter Property="CornerRadius" Value="50" />
             <Setter Property="Width" Value="40" />
             <Setter Property="Height" Value="40" />
-            <Setter Property="Background" Value="#C4C4C4" />
+            <Setter Property="Background" Value="#D3D3D3" />
         </Style>
     </UserControl.Styles>
 
@@ -49,9 +49,9 @@
                 VerticalAlignment="Center"
 				ZIndex="9999">
                 
-                <Slider.Styles>
+                <!--<Slider.Styles>
                     <StyleInclude Source="avares://Avalonia.Themes.Fluent/FluentDark.xaml" />
-                </Slider.Styles>
+                </Slider.Styles>-->
             </Slider>
 
             <DockPanel Margin="10, 0">
