@@ -11,6 +11,7 @@
         <ApplicationIcon>1.ico</ApplicationIcon>
         <AssemblyName>Instrumentation.App</AssemblyName>
         <StartupObject>Instrumentation.NetCore.Program</StartupObject>
+        <NeutralLanguage>ru</NeutralLanguage>
     </PropertyGroup>
     <ItemGroup>
       <None Remove="1.ico" />

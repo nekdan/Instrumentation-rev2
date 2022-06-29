@@ -39,6 +39,10 @@
             </Setter>
         </Style>
 
+		<Style Selector="TreeViewItem:selected /template/ Border#PART_LayoutRoot">
+			<Setter Property="TextBlock.Foreground" Value="#1E2124" />
+		</Style>
+
         <Style>
             <Style.Resources>
                 <x:Double x:Key="TreeViewItemMinHeight">20</x:Double>
@@ -51,10 +55,17 @@
     </Design.DataContext>
 
     <Grid ColumnDefinitions="355 * 0.75*">
+		<Grid.Resources>
+			<SolidColorBrush x:Key="TreeViewItemBackgroundSelected" Color="#DAD100"/>
+			<SolidColorBrush x:Key="TreeViewItemBackgroundSelectedPointerOver" Color="#DAD100"/>
+			<SolidColorBrush x:Key="TreeViewItemForegroundSelected" Color="#1E2124"/>
+			<SolidColorBrush x:Key="TreeViewItemForegroundSelectedPointerOver" Color="#1E2124"/>
+			<!--<SolidColorBrush x:Key="TreeViewItemForeground" Color="#1E2124"/>-->
+		</Grid.Resources>
         <Border
 			Background="#2E3136"
             Classes="Section"
-            Grid.Column="0">
+            Grid.Column="0">			
 			<ScrollViewer
 				AllowAutoHide="False"
 				HorizontalScrollBarVisibility="Auto"
@@ -64,7 +75,7 @@
                     FontSize="16"
                     Items="{Binding Instuments, Mode=OneWay}"
                     SelectedItem="{Binding SelectedInstrument, Mode=TwoWay}"
-                    SelectionMode="Single">
+                    SelectionMode="Single">					
                     <TreeView.ItemTemplate>
                         <TreeDataTemplate ItemsSource="{Binding Subinstuments}">
                             <TextBlock Text="{Binding Name}" FontSize="16" TextWrapping="Wrap"/>

@@ -29,28 +29,35 @@
                 Grid.Row="0"
                 Items="{Binding Categories, Mode=OneWay}"
                 SelectedItem="{Binding SelectedCategory, Mode=TwoWay}">
-                <TabControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel
+				<TabControl.Styles>
+					<Style Selector="TabItem:selected">
+						<Setter Property="Background" Value="#DAD100"/>
+						<Setter Property="BorderBrush" Value="#DAD100"/>
+					</Style>
+				</TabControl.Styles>
+				<TabControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Orientation="Horizontal"
                             Spacing="5">
-                            <Image
+							<Image
                                 Width="30"
                                 Height="30"
                                 Opacity="{Binding Opacity}"
                                 Source="{Binding Category.IconBase64, Converter={StaticResource Base64ToBitmapConverter}}" />
-                            <TextBlock Text="{Binding Category.Name}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </TabControl.ItemTemplate>
+							<TextBlock Text="{Binding Category.Name}" />
+						</StackPanel>
+					</DataTemplate>					
+				</TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
                     <DataTemplate>
                         <StackPanel />
                     </DataTemplate>
-                </TabControl.ContentTemplate>
+                </TabControl.ContentTemplate>				
             </TabControl>
+			
 
             <Button
                 Name="InfoButton"
