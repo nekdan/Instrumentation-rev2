@@ -31,7 +31,15 @@
             <Setter Property="Width" Value="40" />
             <Setter Property="Height" Value="40" />
             <Setter Property="Background" Value="#D3D3D3" />
-        </Style>
+        </Style>		
+		<Style Selector="Button.Player:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="#FAFAFA" />
+			<Setter Property="BorderBrush" Value="#FAFAFA" />
+		</Style>
+		<Style Selector="Button.Player:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="#7f8284" />
+			<Setter Property="BorderBrush" Value="#2A2E32" />
+		</Style>
     </UserControl.Styles>
 
     <Border>
@@ -118,7 +126,7 @@
                     <Button
                         Classes="Player"
                         Command="{Binding Play}"
-                        Name="PlayButton">
+                        Name="PlayButton">						
                         <Image
                             Height="25"
                             Source="/Assets/play.png"

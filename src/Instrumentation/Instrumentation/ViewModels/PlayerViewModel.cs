@@ -150,7 +150,7 @@ public sealed class PlayerViewModel: ViewModelBase, IActivatableViewModel
                     x => x.SoundDuration,
                     x => x.SoundPosititon)
                 .Where(x => x.Item1 != null && x.Item2 != null)
-                .Select(x => $"{x.Item2 ?? TimeSpan.Zero:mm\\:ss}/{x.Item1 ?? TimeSpan.Zero:mm\\:ss}")
+                .Select(x => $"{x.Item2 ?? TimeSpan.Zero:mm\\:ss} / {x.Item1 ?? TimeSpan.Zero:mm\\:ss}")
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(x => Timer = x)
                 .DisposeWith(disposables);
