@@ -155,7 +155,7 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
                     _player.Clear();
                     InstrumentImages.Clear();
                     SoundNoteImages.Clear();
-                    
+                    SelectedInstrument = null;
                     Instuments.Load(x);
                 })
                 .DisposeWith(disposables);
