@@ -69,7 +69,7 @@
 			<ScrollViewer
 				AllowAutoHide="False"
 				HorizontalScrollBarVisibility="Auto"
-				HorizontalAlignment="Stretch"
+				HorizontalAlignment="Left"
 				Padding="0 0 15 15">
                 <TreeView
                     FontSize="16"
@@ -93,15 +93,20 @@
 			<ScrollViewer
 				AllowAutoHide="False"
 				HorizontalScrollBarVisibility="Auto"
+				HorizontalAlignment="Left"
 				Padding="0 0 15 15">
 				<TreeView
                     FontSize="16"
                     AutoScrollToSelectedItem="False"
+					HorizontalAlignment="Left"
                     Items="{Binding Sounds, Mode=OneWay}"
                     SelectedItem="{Binding SelectedSound, Mode=TwoWay}"
                     SelectionMode="Single">
+					<TreeView.KeyBindings>
+						<KeyBinding Gesture="Enter" Command="{Binding StartPlaying}"/>
+					</TreeView.KeyBindings>
 					<TreeView.ItemTemplate>
-						<TreeDataTemplate ItemsSource="{Binding Subsounds}">
+						<TreeDataTemplate  ItemsSource="{Binding Subsounds}">
 							<TextBlock Text="{Binding Name}" FontSize="16" TextWrapping="Wrap" />
 						</TreeDataTemplate>
 					</TreeView.ItemTemplate>

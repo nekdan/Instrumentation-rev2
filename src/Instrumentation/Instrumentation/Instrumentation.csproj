@@ -10,6 +10,12 @@
     <ItemGroup>
         <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
+    <ItemGroup>
+      <AvaloniaResource Remove="Assets\Попов. Инструментоведение %282022%29.pdf" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Assets\Попов. Инструментоведение %282022%29.pdf" />
+    </ItemGroup>
 	<ItemGroup>
         <PackageReference Include="Avalonia" Version="0.10.15" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
@@ -24,6 +30,24 @@
         <PackageReference Include="ReactiveUI.Fody" Version="18.0.7" />
         <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     </ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Assets\Попов. Инструментоведение (2022).pdf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
     <ItemGroup>
       <None Update="libbass.dylib">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -32,6 +56,9 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="app.db">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Попов. Инструментоведение %282022%29.pdf">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
