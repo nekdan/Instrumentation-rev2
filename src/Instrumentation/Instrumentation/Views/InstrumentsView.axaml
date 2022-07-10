@@ -19,6 +19,7 @@
 
     <UserControl.Styles>
         <StyleInclude Source="avares://Avalonia.Themes.Fluent/DensityStyles/Compact.xaml" />
+		<FluentTheme Mode="Dark"/>
 
         <Style Selector="Border.Section">
             <Setter Property="Margin" Value="0 0 1 1" />
@@ -27,7 +28,7 @@
         </Style>
 
         <Style Selector="TreeViewItem">
-            <Setter Property="IsExpanded" Value="True" />
+			<Setter Property="IsExpanded" Value="True" />
             <Setter Property="i:Interaction.Behaviors">
                 <i:BehaviorCollectionTemplate>
                     <i:BehaviorCollection>

@@ -12,25 +12,87 @@
 		Width="800"
 		Height="600"
 		FontSize="16">
+
+	<Window.Resources>
+		<SolidColorBrush x:Key="TabItemHeaderSelectedPipeFill" Color="#DAD100" />
+		<!--<StaticResource x:Key="ScrollBarBackground" ResourceKey="Green" />-->
+		<SolidColorBrush x:Key="ScrollBarBackground" Color="#DAD100" />
+		<SolidColorBrush x:Key="ScrollBarTrackFill" Color="#DAD100" Opacity="0.9" />
+		<SolidColorBrush x:Key="ScrollBarPanningThumbBackground" Color="#DAD100" />
+		<SolidColorBrush x:Key="ScrollBarThumbBackgroundColor" Color="#DAD100" />
+
+
+	</Window.Resources>
 	
 	<Window.Styles>
 		<StyleInclude Source="avares://Avalonia.Themes.Fluent/FluentLight.xaml"/>
+		<FluentTheme Mode="Light"/>
     </Window.Styles>	
 	
-	<md:MarkdownScrollViewer Margin="5 0 3 0">
+	<md:MarkdownScrollViewer Margin="5 0 0 0">
 		<md:MarkdownScrollViewer.Styles>
-			
+			<StyleInclude Source="avares://Avalonia.Themes.Fluent/FluentLight.xaml"/>
+			<FluentTheme Mode="Light"/>
 			<Style Selector="ctxt|CTextBlock.Heading3">
 				<Setter Property="Foreground" Value="Black"/>
 				<Setter Property="TextAlignment" Value="Center"/>
 			</Style>
 			<Style Selector="ctxt|CTextBlock">
-				<Setter Property="Margin" Value="5 5 15 5"/>
+				<Setter Property="Margin" Value="5 5 10 5"/>
 			</Style>
 			<!--<Style Selector="avedit|TextEditor">
 				<Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
 			</Style>-->
+			<Style Selector="md|MarkdownScrollViewer ScrollViewer">
+				<Setter Property="Template">
+					<ControlTemplate>
+						<Grid ColumnDefinitions="*,Auto" RowDefinitions="*,Auto">
+							<ScrollContentPresenter Name="PART_ContentPresenter"
+								  Grid.Row="0"
+								  Grid.Column="0"
+								  Background="{TemplateBinding Background}"
+								  CanHorizontallyScroll="{TemplateBinding CanHorizontallyScroll}"
+								  CanVerticallyScroll="{TemplateBinding CanVerticallyScroll}"
+								  Content="{TemplateBinding Content}"
+								  Extent="{TemplateBinding Extent, Mode=TwoWay}"
+								  Offset="{TemplateBinding Offset, Mode=TwoWay}"
+								  Viewport="{TemplateBinding Viewport, Mode=TwoWay}">
+								<ScrollContentPresenter.GestureRecognizers>
+									<ScrollGestureRecognizer
+									  CanHorizontallyScroll="{TemplateBinding CanHorizontallyScroll}"
+									  CanVerticallyScroll="{TemplateBinding CanVerticallyScroll}" />
+								</ScrollContentPresenter.GestureRecognizers>
+							</ScrollContentPresenter>
+							<ScrollBar Name="PART_HorizontalScrollBar"
+								  AllowAutoHide="False"
+								  Orientation="Horizontal"
+								  LargeChange="{Binding LargeChange.Width, RelativeSource={RelativeSource TemplatedParent}}"
+								  SmallChange="{Binding SmallChange.Width, RelativeSource={RelativeSource TemplatedParent}}"
+								  Maximum="{TemplateBinding HorizontalScrollBarMaximum}"
+								  Value="{TemplateBinding HorizontalScrollBarValue, Mode=TwoWay}"
+								  ViewportSize="{TemplateBinding HorizontalScrollBarViewportSize}"
+								  Visibility="{TemplateBinding HorizontalScrollBarVisibility}"
+								  Grid.Row="1"
+								  Focusable="False" />
+							<ScrollBar Name="PART_VerticalScrollBar"
+								  AllowAutoHide="False"
+								  Orientation="Vertical"
+								  LargeChange="{Binding LargeChange.Height, RelativeSource={RelativeSource TemplatedParent}}"
+								  SmallChange="{Binding SmallChange.Height, RelativeSource={RelativeSource TemplatedParent}}"
+								  Maximum="{TemplateBinding VerticalScrollBarMaximum}"
+								  Value="{TemplateBinding VerticalScrollBarValue, Mode=TwoWay}"
+								  ViewportSize="{TemplateBinding VerticalScrollBarViewportSize}"
+								  Visibility="{TemplateBinding VerticalScrollBarVisibility}"
+								  Grid.Column="1"
+								  Focusable="False"/>
+							<Panel x:Name="PART_ScrollBarsSeparator" Grid.Row="1" Grid.Column="1" Background="{DynamicResource ScrollViewerScrollBarsSeparatorBackground}" />
+						</Grid>
+					</ControlTemplate>
+				</Setter>
+			</Style>
 		</md:MarkdownScrollViewer.Styles>
+
+		
 		### **Информация**
 
 		**Предисловие**

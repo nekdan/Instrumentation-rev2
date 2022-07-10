@@ -11,6 +11,11 @@
         Width="600"
         Height="200">
 
+	<UserControl.Styles>
+		<StyleInclude Source="avares://Avalonia.Themes.Fluent/FluentDark.xaml" />
+		<FluentTheme Mode="Dark"/>
+	</UserControl.Styles>
+
     <Design.DataContext>
         <dialogs:MessageDialogViewModel />
     </Design.DataContext>

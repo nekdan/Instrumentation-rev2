@@ -87,7 +87,7 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
             this.WhenAnyValue(x => x.CanPlaySound));
         var canPlaying = this
             .WhenAnyValue(x => x.StartPlaying);
-        StartPlaying = ReactiveCommand.Create(() => _player.Stop());
+        //StartPlaying = ReactiveCommand.Create(() => _player.Stop());
 
 
         PlaySound = ReactiveCommand.Create<(string audio, string fileName), Unit>(x =>
