@@ -10,7 +10,7 @@ namespace Instrumentation.Views
         public MainWindow()
         {
             InitializeComponent();
-            
+
             Interactions.ShowImagesCarousel.RegisterHandler(async interaction =>
             {
                 var dialog = new ImagesCarouselDialogView
@@ -38,8 +38,18 @@ namespace Instrumentation.Views
                     InitialFileName = interaction.Input,
                     DefaultExtension = "jpg",
                 };
+
                 var result = await dialog.ShowAsync(this);
-                
+
+                interaction.SetOutput(result);
+            });
+
+            Interactions.ShowSelectDirectoryDialog.RegisterHandler(async interaction =>
+            {
+                var dialog = new OpenFolderDialog();
+
+                var result = await dialog.ShowAsync(this);
+
                 interaction.SetOutput(result);
             });
         }

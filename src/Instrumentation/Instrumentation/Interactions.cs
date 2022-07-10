@@ -11,5 +11,7 @@ namespace Instrumentation
         public static Interaction<ImagesCarouselDialogViewModel, Unit> ShowImagesCarousel = new();
 
         public static Interaction<string, string> ShowSaveFileDialog = new();
+
+        public static Interaction<Unit, string> ShowSelectDirectoryDialog = new();
     }
 }
