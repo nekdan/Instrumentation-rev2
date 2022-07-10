@@ -81,16 +81,17 @@ namespace Instrumentation.Dialogs
             for(var i = 0 ; i < Images.Count; i++)
             {
                 var image = Images[i];
-                Name = string.Join("_", Name.Split(Path.GetInvalidFileNameChars()));
-                filePath = Path.Combine(filePath, $"{Name}-{i + 1}");
-                filePath = Path.ChangeExtension(filePath, "jpg");
+                var newFileName = string.Join("_", Name.Split(Path.GetInvalidFileNameChars()));
 
-                if (File.Exists(filePath))
-                    File.Delete(filePath);
+                var newfilePath = Path.Combine(filePath, $"{newFileName}-{i + 1}");
+                newfilePath = Path.ChangeExtension(newfilePath, "jpg");
+
+                if (File.Exists(newfilePath))
+                    File.Delete(newfilePath);
 
                 var bytes = Convert.FromBase64String(image.ImageBase64);
                 using var ms = new MemoryStream(bytes);
-                await using var fs = new FileStream(filePath, FileMode.CreateNew, FileAccess.ReadWrite);
+                await using var fs = new FileStream(newfilePath, FileMode.CreateNew, FileAccess.ReadWrite);
                 ms.WriteTo(fs);
                 fs.Flush();
             }
