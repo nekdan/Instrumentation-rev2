@@ -38,9 +38,29 @@
                     Margin="5"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center">
-                    <Button
+
+					<Button
+						Width="150"
+						IsVisible="{Binding CanSaveAllImages, Mode=OneWay}"
+						Command="{Binding SaveAllFiles}">
+						<TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="Сохранить все"></TextBlock>
+						<Button.Styles>
+							<Style Selector="Button">
+								<Setter Property="Foreground" Value="#1E2124"/>
+								<Setter Property="Background" Value="#DAD100"/>
+							</Style>
+							<Style Selector="Button:pointerover">
+								<Setter Property="Foreground" Value="White"/>
+							</Style>
+						</Button.Styles>
+					</Button>
+
+					<Button
                         Width="100"
-                        Command="{Binding SaveFile}">						
+                        Command="{Binding SaveFile}">
                         <TextBlock
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -55,7 +75,7 @@
 							</Style>
 						</Button.Styles>
                     </Button>
-                    
+
                     <Button
                         Width="100"
                         Command="{Binding Close}">

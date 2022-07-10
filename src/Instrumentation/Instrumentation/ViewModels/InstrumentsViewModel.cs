@@ -19,26 +19,26 @@ namespace Instrumentation.ViewModels;
 
 public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IActivatableViewModel
 {
-    private readonly IInstrumentationDataProvider _instrumentation = 
+    private readonly IInstrumentationDataProvider _instrumentation =
             Locator.Current.GetService<IInstrumentationDataProvider>();
 
     private readonly ISoundPlayer _player =
         Locator.Current.GetService<ISoundPlayer>();
-    
+
     public string? UrlPathSegment => $"/{Category?.Name}";
     public IScreen HostScreen => Locator.Current.GetService<MainViewModel>();
     public ViewModelActivator Activator { get; } = new();
-    
+
     [Reactive] public InstrumentCategory Category { get; set; }
 
     [Reactive] public ObservableCollectionExtended<Instument> Instuments { get; private set; } = new();
 
     [Reactive] public ObservableCollectionExtended<Sound> Sounds { get; private set; } = new();
-    
+
     [Reactive] [CanBeNull] public SoundData SelectedSoundData { get; private set; }
-    
+
     [Reactive] [CanBeNull] public object SelectedInstrument { get; set; }
-    
+
     [Reactive] [CanBeNull] public object SelectedSound { get; set; }
 
     [Reactive] public ObservableCollectionExtended<InstrumentImage> InstrumentImages { get; private set; } = new();
@@ -48,15 +48,15 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
     [Reactive] public bool IsLoading { get; private set; }
 
     [Reactive] public bool CanPlaySound { get; private set; }
-    
+
     [Reactive] public bool ShowInstrumentImages { get; private set; }
-    
+
     [Reactive] public bool ShowSoundImages { get; private set; }
 
     public ReactiveCommand<InstrumentCategory, IEnumerable<Instument>> LoadInstruments { get; }
-    
+
     public ReactiveCommand<object, IEnumerable<Sound>> LoadSounds { get; }
-    
+
     public ReactiveCommand<object, SoundData> LoadSoundData { get; }
 
     public ReactiveCommand<(string audio, string fileName), Unit> PlaySound { get; }
@@ -126,7 +126,14 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
                     {
                         if (ShowSoundImages && SoundNoteImages.Count > 0)
                         {
-                            return vm.Configure(SoundNoteImages, SelectedSoundData.SoundName);
+                            var instName = SelectedInstrument switch
+                            {
+                                Instument { IsInstumentGroup: false } instrument => instrument.Name,
+                                Subinstument subinstrument => subinstrument.Name,
+                                _ => string.Empty
+                            };
+
+                            return vm.Configure(SoundNoteImages, $"{instName}_{SelectedSoundData.SoundName}");
                         }
 
                         return null;
@@ -173,7 +180,7 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
                 .Subscribe(x =>
                 {
                     SelectedSound = null;
-                    _player.Clear();                    
+                    _player.Clear();
                     Sounds.Load(x);
                     InstrumentImages.Clear();
                 })
@@ -203,7 +210,7 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
                     InstrumentImages.Load(x);
                 })
                 .DisposeWith(disposables);
-            
+
             // загрузка данных выбранного звука
             this.WhenAnyValue(x => x.SelectedSound)
                 .WhereNotNull()
@@ -267,7 +274,7 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
                 .Subscribe(x =>
                 {
                     var (instrumentImages, soundNoteImages, selectedSound) = x;
-                    
+
                     if (instrumentImages > 0 && selectedSound is null)
                     {
                         ShowInstrumentImages = selectedSound is null or Sound { IsSoundGroup: true };
@@ -353,7 +360,7 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
         {
             null => Enumerable.Empty<Sound>(),
             Instument instr when instr.Subinstuments.Count > 0 => Enumerable.Empty<Sound>(),
-            Instument instr when instr.Subinstuments.Count == 0 
+            Instument instr when instr.Subinstuments.Count == 0
                 => await _instrumentation.GetSoundsAsync(instr).ToListAsync(),
             Subinstument subinstr => await _instrumentation.GetSoundsAsync(subinstr).ToListAsync(),
             _ => throw new ArgumentException($"Unknown type of {nameof(instrument)}")
