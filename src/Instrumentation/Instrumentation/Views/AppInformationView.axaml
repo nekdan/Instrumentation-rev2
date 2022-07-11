@@ -8,7 +8,7 @@
 		xmlns:md="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
 		Title="Информация"
 		WindowStartupLocation="CenterOwner"
-		Icon="/Assets/logo.ico"
+		Icon="/Assets/logo-instrum.ico"
 		Width="800"
 		Height="600"
 		FontSize="16">

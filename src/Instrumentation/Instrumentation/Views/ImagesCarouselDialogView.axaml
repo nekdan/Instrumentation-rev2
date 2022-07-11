@@ -7,7 +7,7 @@
              xmlns:converters="clr-namespace:Instrumentation.Views.Converters"
              x:Class="Instrumentation.Views.ImagesCarouselDialogView"
              WindowStartupLocation="CenterOwner"
-             Icon="/Assets/logo.ico"
+             Icon="/Assets/logo-instrum.ico"
              Title="{Binding Name, Mode=OneWay}">
 
     <Design.DataContext>

@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Instrumentation.NetCore", "
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_x64", "Setup\Setup.vdproj", "{8246F559-A9A0-4BBF-B457-3B2BA58D5D3A}"
 EndProject
-Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "AI Setup", "AI Setup\AI Setup.aiproj", "{FC46503D-D63B-4E64-9F08-316FE6B5A83F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|Any CPU = All|Any CPU
@@ -75,24 +73,6 @@ Global
 		{8246F559-A9A0-4BBF-B457-3B2BA58D5D3A}.Release|x64.ActiveCfg = Release
 		{8246F559-A9A0-4BBF-B457-3B2BA58D5D3A}.Release|x86.ActiveCfg = Release
 		{8246F559-A9A0-4BBF-B457-3B2BA58D5D3A}.Release|x86.Build.0 = Release
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.All|Any CPU.ActiveCfg = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.All|Any CPU.Build.0 = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.All|x64.ActiveCfg = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.All|x64.Build.0 = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.All|x86.ActiveCfg = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.All|x86.Build.0 = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Debug|Any CPU.ActiveCfg = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Debug|Any CPU.Build.0 = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Debug|x64.ActiveCfg = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Debug|x64.Build.0 = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Debug|x86.ActiveCfg = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Debug|x86.Build.0 = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Release|Any CPU.ActiveCfg = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Release|Any CPU.Build.0 = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Release|x64.ActiveCfg = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Release|x64.Build.0 = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Release|x86.ActiveCfg = DefaultBuild
-		{FC46503D-D63B-4E64-9F08-316FE6B5A83F}.Release|x86.Build.0 = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

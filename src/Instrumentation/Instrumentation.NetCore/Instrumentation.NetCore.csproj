@@ -8,16 +8,18 @@
         <RuntimeIdentifiers>osx-x64;win-x64;win-arm;win-x86;</RuntimeIdentifiers>
         <PlatformTarget>AnyCPU</PlatformTarget>
         <Platforms>AnyCPU;x64;x86</Platforms>
-        <ApplicationIcon>1.ico</ApplicationIcon>
+        <ApplicationIcon>logo-instrum.ico</ApplicationIcon>
         <AssemblyName>Instrumentation.App</AssemblyName>
         <StartupObject>Instrumentation.NetCore.Program</StartupObject>
         <NeutralLanguage>ru</NeutralLanguage>
+        <UseWPF>False</UseWPF>
+        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     </PropertyGroup>
     <ItemGroup>
-      <None Remove="1.ico" />
+      <None Remove="logo-instrum.ico" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="1.ico" />
+      <Content Include="logo-instrum.ico" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Avalonia.Desktop" Version="0.10.15" />
@@ -27,5 +29,18 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Instrumentation\Instrumentation.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Properties\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Update="Properties\Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
     </ItemGroup>
 </Project>

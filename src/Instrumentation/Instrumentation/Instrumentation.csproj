@@ -6,6 +6,8 @@
         <AvaloniaVersion>0.10.11</AvaloniaVersion>
         <PlatformTarget>AnyCPU</PlatformTarget>
         <Platforms>AnyCPU;x64;x86</Platforms>
+        <ApplicationIcon>Assets\logo-instrum.ico</ApplicationIcon>
+        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     </PropertyGroup>
     <ItemGroup>
         <AvaloniaResource Include="Assets\**" />
@@ -15,6 +17,9 @@
     </ItemGroup>
     <ItemGroup>
       <None Remove="Assets\Попов. Инструментоведение %282022%29.pdf" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Assets\logo-instrum.ico" />
     </ItemGroup>
 	<ItemGroup>
         <PackageReference Include="Avalonia" Version="0.10.15" />

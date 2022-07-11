@@ -70,7 +70,7 @@
 			<ScrollViewer
 				AllowAutoHide="False"
 				HorizontalScrollBarVisibility="Auto"
-				HorizontalAlignment="Left"
+				HorizontalAlignment="Stretch"
 				Padding="0 0 15 15">
                 <TreeView
                     FontSize="16"
@@ -94,12 +94,12 @@
 			<ScrollViewer
 				AllowAutoHide="False"
 				HorizontalScrollBarVisibility="Auto"
-				HorizontalAlignment="Left"
+				HorizontalAlignment="Stretch"
 				Padding="0 0 15 15">
 				<TreeView
                     FontSize="16"
                     AutoScrollToSelectedItem="False"
-					HorizontalAlignment="Left"
+					HorizontalAlignment="Stretch"
                     Items="{Binding Sounds, Mode=OneWay}"
                     SelectedItem="{Binding SelectedSound, Mode=TwoWay}"
                     SelectionMode="Single">

@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_15E90A7CDB6B406A879E12B600B1D126"
+        "MsmKey" = "8:_00846178ECBD4512A197D88C03D9ADD4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -122,10 +122,10 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_15E90A7CDB6B406A879E12B600B1D126"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_00846178ECBD4512A197D88C03D9ADD4"
             {
-            "SourcePath" = "8:C:\\Users\\Danilushkin\\Downloads\\1.ico"
-            "TargetName" = "8:1.ico"
+            "SourcePath" = "8:..\\src\\Instrumentation\\Instrumentation\\Assets\\logo-instrum.ico"
+            "TargetName" = "8:logo-instrum.ico"
             "Tag" = "8:"
             "Folder" = "8:_7B6D204ECAF34FAAA56A7EC763851173"
             "Condition" = "8:"
@@ -227,7 +227,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_15E90A7CDB6B406A879E12B600B1D126"
+        "ARPPRODUCTICON" = "8:_00846178ECBD4512A197D88C03D9ADD4"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -341,7 +341,7 @@
             "Target" = "8:_2D2A74E3694A46419EBDA4AD7A5B0F69"
             "Folder" = "8:_CECCB2AA6EE7442FB14A5D834AA667C0"
             "WorkingFolder" = "8:_7B6D204ECAF34FAAA56A7EC763851173"
-            "Icon" = "8:_15E90A7CDB6B406A879E12B600B1D126"
+            "Icon" = "8:_00846178ECBD4512A197D88C03D9ADD4"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F19206EB63544E38981B251261DE1FFF"
@@ -355,7 +355,7 @@
             "Target" = "8:_2D2A74E3694A46419EBDA4AD7A5B0F69"
             "Folder" = "8:_82D1128E91BB4FC8B46978772AA40D22"
             "WorkingFolder" = "8:_7B6D204ECAF34FAAA56A7EC763851173"
-            "Icon" = "8:_15E90A7CDB6B406A879E12B600B1D126"
+            "Icon" = "8:_00846178ECBD4512A197D88C03D9ADD4"
             "Feature" = "8:"
             }
         }

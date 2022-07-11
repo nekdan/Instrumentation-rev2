@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:Instrumentation.Views"
         mc:Ignorable="d" d:DesignWidth="1150" d:DesignHeight="650"
         x:Class="Instrumentation.Views.MainWindow"
-        Icon="/Assets/logo.ico"
+        Icon="/Assets/logo-instrum.ico"
 		WindowStartupLocation="CenterScreen"
         Title="Попов. Инструментоведение"
         MinWidth="1150"
