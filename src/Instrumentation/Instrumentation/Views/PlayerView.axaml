@@ -16,11 +16,11 @@
 
 	<UserControl.Resources>
 		<SolidColorBrush x:Key="SliderThumbBackground" Color="#D3D3D3" />
-		<SolidColorBrush x:Key="SliderThumbBackgroundPointerOver" Color="#DAD100" />
-		<SolidColorBrush x:Key="SliderThumbBackgroundPressed" Color="#C3B000" />
-		<SolidColorBrush x:Key="SliderTrackValueFill" Color="#DAD100" />
-		<SolidColorBrush x:Key="SliderTrackValueFillPointerOver" Color="#DAD100" />
-		<SolidColorBrush x:Key="SliderTrackValueFillPressed" Color="#DAD100" />
+		<SolidColorBrush x:Key="SliderThumbBackgroundPointerOver" Color="#FEFE00" />
+		<SolidColorBrush x:Key="SliderThumbBackgroundPressed" Color="#DAD100" />
+		<SolidColorBrush x:Key="SliderTrackValueFill" Color="#FEFE00" />
+		<SolidColorBrush x:Key="SliderTrackValueFillPointerOver" Color="#FEFE00" />
+		<SolidColorBrush x:Key="SliderTrackValueFillPressed" Color="#FEFE00" />
 	</UserControl.Resources>
 
     <UserControl.Styles>

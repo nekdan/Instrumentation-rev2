@@ -57,8 +57,8 @@
 
     <Grid ColumnDefinitions="355 * 0.75*">
 		<Grid.Resources>
-			<SolidColorBrush x:Key="TreeViewItemBackgroundSelected" Color="#DAD100"/>
-			<SolidColorBrush x:Key="TreeViewItemBackgroundSelectedPointerOver" Color="#DAD100"/>
+			<SolidColorBrush x:Key="TreeViewItemBackgroundSelected" Color="#FEFE00"/>
+			<SolidColorBrush x:Key="TreeViewItemBackgroundSelectedPointerOver" Color="#FEFE00"/>
 			<SolidColorBrush x:Key="TreeViewItemForegroundSelected" Color="#1E2124"/>
 			<SolidColorBrush x:Key="TreeViewItemForegroundSelectedPointerOver" Color="#1E2124"/>
 			<!--<SolidColorBrush x:Key="TreeViewItemForeground" Color="#1E2124"/>-->

@@ -15,7 +15,7 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <converters:Base64ToBitmapConverter x:Key="Base64ToBitmapConverter" />
-		<SolidColorBrush x:Key="TabItemHeaderSelectedPipeFill" Color="#DAD100" />
+		<SolidColorBrush x:Key="TabItemHeaderSelectedPipeFill" Color="#FEFE00" />
 	</UserControl.Resources>
 
 	<UserControl.Styles>
