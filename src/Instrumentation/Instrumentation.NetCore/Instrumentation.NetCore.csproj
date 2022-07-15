@@ -6,7 +6,7 @@
         <RootNamespace>Instrumentation.NetCore</RootNamespace>
         <AvaloniaVersion>0.10.11</AvaloniaVersion>
         <RuntimeIdentifiers>osx-x64;win-x64;win-arm;win-x86;</RuntimeIdentifiers>
-        <PlatformTarget>AnyCPU</PlatformTarget>
+        <PlatformTarget>x86</PlatformTarget>
         <Platforms>AnyCPU;x64;x86</Platforms>
         <ApplicationIcon>logo-instrum.ico</ApplicationIcon>
         <AssemblyName>Instrumentation.App</AssemblyName>
