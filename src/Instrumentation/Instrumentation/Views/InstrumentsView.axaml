@@ -66,7 +66,7 @@
         <Border
 			Background="#2E3136"
             Classes="Section"
-            Grid.Column="0">			
+            Grid.Column="0">
 			<ScrollViewer
 				AllowAutoHide="False"
 				HorizontalScrollBarVisibility="Auto"
@@ -76,7 +76,7 @@
                     FontSize="16"
                     Items="{Binding Instuments, Mode=OneWay}"
                     SelectedItem="{Binding SelectedInstrument, Mode=TwoWay}"
-                    SelectionMode="Single">					
+                    SelectionMode="Single">
                     <TreeView.ItemTemplate>
                         <TreeDataTemplate ItemsSource="{Binding Subinstuments}">
                             <TextBlock Text="{Binding Name}" FontSize="16" TextWrapping="Wrap"/>
@@ -104,7 +104,7 @@
                     SelectedItem="{Binding SelectedSound, Mode=TwoWay}"
                     SelectionMode="Single">
 					<TreeView.KeyBindings>
-						<KeyBinding Gesture="Enter" Command="{Binding StartPlaying}"/>
+						<KeyBinding Gesture="Enter" Command="{Binding StartPausePlaying}"/>
 					</TreeView.KeyBindings>
 					<TreeView.ItemTemplate>
 						<TreeDataTemplate  ItemsSource="{Binding Subsounds}">
@@ -167,7 +167,7 @@
 
                     <ScrollViewer
 						AllowAutoHide="False"
-                        HorizontalScrollBarVisibility="Disabled" 
+                        HorizontalScrollBarVisibility="Disabled"
                         VerticalScrollBarVisibility="Auto"
                         Margin="10 0 5 5"
 						Padding="0 0 15 0">

@@ -35,11 +35,11 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
 
     [Reactive] public ObservableCollectionExtended<Sound> Sounds { get; private set; } = new();
 
-    [Reactive] [CanBeNull] public SoundData SelectedSoundData { get; private set; }
+    [Reactive][CanBeNull] public SoundData SelectedSoundData { get; private set; }
 
-    [Reactive] [CanBeNull] public object SelectedInstrument { get; set; }
+    [Reactive][CanBeNull] public object SelectedInstrument { get; set; }
 
-    [Reactive] [CanBeNull] public object SelectedSound { get; set; }
+    [Reactive][CanBeNull] public object SelectedSound { get; set; }
 
     [Reactive] public ObservableCollectionExtended<InstrumentImage> InstrumentImages { get; private set; } = new();
 
@@ -61,9 +61,9 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
 
     public ReactiveCommand<(string audio, string fileName), Unit> PlaySound { get; }
 
-    public ReactiveCommand<Unit, Unit> StopSound { get; }
-
     public ReactiveCommand<Unit, Unit> StartPlaying { get; }
+
+    public ReactiveCommand<Unit, Unit> StartPausePlaying { get; }
 
     public ReactiveCommand<Unit, ImagesCarouselDialogViewModel> ShowImages { get; }
 
@@ -85,10 +85,23 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
 
         StartPlaying = ReactiveCommand.Create(() => _player.Play(),
             this.WhenAnyValue(x => x.CanPlaySound));
-        var canPlaying = this
-            .WhenAnyValue(x => x.StartPlaying);
-        //StartPlaying = ReactiveCommand.Create(() => _player.Stop());
 
+        StartPausePlaying = ReactiveCommand.CreateFromTask(async () =>
+        {
+            bool isPlaying = false;
+            var obs = _player.IsPlaying.Subscribe(x => isPlaying = x);
+
+            if (!isPlaying)
+            {
+                await StartPlaying.Execute();
+            }
+            else
+            {
+                _player.Pause();
+            }
+
+            obs.Dispose();
+        });
 
         PlaySound = ReactiveCommand.Create<(string audio, string fileName), Unit>(x =>
         {
@@ -140,7 +153,6 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
                     }
             }
         });
-
 
         LoadInstrumentImages = ReactiveCommand.CreateFromTask<object, IEnumerable<InstrumentImage>>(GetInstrumentImagesAsync);
 

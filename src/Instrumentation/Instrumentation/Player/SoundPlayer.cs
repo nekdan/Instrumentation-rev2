@@ -18,13 +18,13 @@ public class SoundPlayer : ISoundPlayer
     private readonly System.Threading.Timer _bassStatusTimer;
     private readonly IAppCache _cache = Locator.Current.GetService<IAppCache>();
     private readonly Subject<int> _error = new();
-    private readonly Subject<bool> _isPaused = new();
-    private readonly Subject<bool> _isPlaying = new();
-    private readonly Subject<bool> _isStopped = new();
+    private readonly BehaviorSubject<bool> _isPaused = new(false);
+    private readonly BehaviorSubject<bool> _isPlaying = new(false);
+    private readonly BehaviorSubject<bool> _isStopped = new(false);
     private readonly Subject<double> _soundDuration = new();
     private readonly Subject<string> _soundName = new();
     private readonly Subject<double> _soundPosition = new();
-    private readonly Subject<bool> _audioIsLoaded = new();
+    private readonly BehaviorSubject<bool> _audioIsLoaded = new(false);
 
     private readonly string _tmpFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tmpaudio");
     private double? _volume;
@@ -35,7 +35,7 @@ public class SoundPlayer : ISoundPlayer
         _bassStatusTimer = new System.Threading.Timer(
             RefreshPosition,
             null,
-            0, 
+            0,
             (int)TimeSpan.FromSeconds(0.9).TotalMilliseconds);
 
         Bass.Free();
@@ -51,9 +51,9 @@ public class SoundPlayer : ISoundPlayer
     public IObservable<string> PlayingFileName => _soundName.AsObservable();
     public IObservable<double> SoundDuration => _soundDuration.AsObservable();
     public IObservable<double> SoundPosition => _soundPosition.AsObservable();
-    public IObservable<bool> IsPlaying => _isPlaying.AsObservable();
-    public IObservable<bool> IsPaused => _isPaused.AsObservable();
-    public IObservable<bool> IsStopped => _isStopped.AsObservable();
+    public IObservable<bool> IsPlaying => _isPlaying;
+    public IObservable<bool> IsPaused => _isPaused;
+    public IObservable<bool> IsStopped => _isStopped;
     public IObservable<bool> AudioIsLoaded => _audioIsLoaded.AsObservable();
 
     public void LoadAudio(string audioBase64, string fileName)
@@ -72,7 +72,7 @@ public class SoundPlayer : ISoundPlayer
 
         if (File.Exists(tmpFileName))
             File.Delete(tmpFileName);
-        
+
         Bass.Free();
         Bass.Init();
         var bytes = Convert.FromBase64String(audioBase64);
@@ -196,11 +196,11 @@ public class SoundPlayer : ISoundPlayer
 
         Directory.Delete(_tmpFolder);
     }
-    
+
     private async void RefreshPosition(object o)
     {
         if (currentStreamHandle is null) return;
-        
+
         var position = await Task.Run(() => Bass.ChannelBytes2Seconds(
             currentStreamHandle.Value, Bass.ChannelGetPosition(currentStreamHandle.Value)));
 
