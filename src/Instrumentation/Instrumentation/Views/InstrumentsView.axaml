@@ -105,6 +105,7 @@
                     SelectionMode="Single">
 					<TreeView.KeyBindings>
 						<KeyBinding Gesture="Space" Command="{Binding StartPausePlaying}"/>
+						<KeyBinding Gesture="Enter" Command="{Binding StartStopPlaying}"/>
 					</TreeView.KeyBindings>
 					<TreeView.ItemTemplate>
 						<TreeDataTemplate  ItemsSource="{Binding Subsounds}">

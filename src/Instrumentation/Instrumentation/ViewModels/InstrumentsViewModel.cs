@@ -64,6 +64,7 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
     public ReactiveCommand<Unit, Unit> StartPlaying { get; }
 
     public ReactiveCommand<Unit, Unit> StartPausePlaying { get; }
+    public ReactiveCommand<Unit, Unit> StartStopPlaying { get; }
 
     public ReactiveCommand<Unit, ImagesCarouselDialogViewModel> ShowImages { get; }
 
@@ -98,6 +99,23 @@ public sealed class InstrumentsViewModel : ViewModelBase, IRoutableViewModel, IA
             else
             {
                 _player.Pause();
+            }
+
+            obs.Dispose();
+        });
+
+        StartStopPlaying = ReactiveCommand.CreateFromTask(async () =>
+        {
+            bool isPlaying = false;
+            var obs = _player.IsPlaying.Subscribe(x => isPlaying = x);
+
+            if (!isPlaying)
+            {
+                await StartPlaying.Execute();
+            }
+            else
+            {
+                _player.Stop();
             }
 
             obs.Dispose();
