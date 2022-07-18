@@ -12,6 +12,9 @@
 		Width="800"
 		MinWidth="800"
 		MinHeight="300"
+		MaxWidth="800"
+		CanResize="False"
+		WindowState="Normal"
 		FontSize="16">
 
 	<Window.Resources>
