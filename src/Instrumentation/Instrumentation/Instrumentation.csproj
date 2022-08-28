@@ -3,7 +3,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>disable</Nullable>
         <LangVersion>10</LangVersion>
-        <AvaloniaVersion>0.10.17</AvaloniaVersion>
+        <AvaloniaVersion>0.10.18</AvaloniaVersion>
         <PlatformTarget>x86</PlatformTarget>
         <Platforms>AnyCPU;x64;x86</Platforms>
         <ApplicationIcon>Assets\logo-instrum.ico</ApplicationIcon>
@@ -22,17 +22,17 @@
       <Content Include="Assets\logo-instrum.ico" />
     </ItemGroup>
 	<ItemGroup>
-        <PackageReference Include="Avalonia" Version="0.10.17" />
+        <PackageReference Include="Avalonia" Version="0.10.18" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.17" />
-        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.17" />
-        <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.17" />
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.18" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.18" />
+        <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.18" />
         <PackageReference Include="DialogHost.Avalonia" Version="0.5.0" />
         <PackageReference Include="LazyCache" Version="2.4.0" />
-        <PackageReference Include="ManagedBass" Version="3.1.0" />
+        <PackageReference Include="ManagedBass" Version="3.1.1" />
         <PackageReference Include="Markdown.Avalonia" Version="0.10.11" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.7" />
-        <PackageReference Include="ReactiveUI.Fody" Version="18.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.8" />
+        <PackageReference Include="ReactiveUI.Fody" Version="18.3.1" />
         <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     </ItemGroup>
 	<ItemGroup>

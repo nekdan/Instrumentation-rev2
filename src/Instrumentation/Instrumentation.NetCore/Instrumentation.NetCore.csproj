@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <RootNamespace>Instrumentation.NetCore</RootNamespace>
-        <AvaloniaVersion>0.10.17</AvaloniaVersion>
+        <AvaloniaVersion>0.10.18</AvaloniaVersion>
         <RuntimeIdentifiers>osx-x64;win-x64;win-arm;win-x86;</RuntimeIdentifiers>
         <PlatformTarget>x86</PlatformTarget>
         <Platforms>AnyCPU;x64;x86</Platforms>
@@ -22,10 +22,10 @@
       <Content Include="logo-instrum.ico" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Avalonia.Desktop" Version="0.10.17" />
+        <PackageReference Include="Avalonia.Desktop" Version="0.10.18" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.17" />
-        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.17" />
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.18" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.18" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Instrumentation\Instrumentation.csproj" />
